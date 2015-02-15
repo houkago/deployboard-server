@@ -5,7 +5,7 @@ import com.twitter.finatra.ContentType._
 
 object App extends FinatraServer {
 
-  
+
   class ExampleApp extends Controller {
 
     /**
@@ -13,9 +13,9 @@ object App extends FinatraServer {
      *
      * curl http://localhost:7070/ => "hello world"
      */
-    get("/") { request =>
-      render.static("index.html").toFuture
-    }
+//    get("/") { request =>
+//      render.static("index.html").toFuture
+//    }
 
     delete("/photos") { request =>
       render.plain("deleted!").toFuture
@@ -127,7 +127,7 @@ object App extends FinatraServer {
     error { request =>
       request.error match {
         case Some(e:ArithmeticException) =>
-          render.status(500).plain("whoops, divide by zero!").toFuture
+          render.status(500).plain("whoops, divide ååby zero!").toFuture
         case Some(e:Unauthorized) =>
           render.status(401).plain("Not Authorized!").toFuture
         case Some(e:UnsupportedMediaType) =>
@@ -220,4 +220,5 @@ object App extends FinatraServer {
   }
 
   register(new ExampleApp())
+  register(new Top())
 }
