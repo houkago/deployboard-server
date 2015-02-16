@@ -5,9 +5,9 @@ import com.twitter.finatra.Controller
 /**
  * Created by a13178 on 2/16/15.
  */
-class Top extends Controller {
+class Login extends Controller {
 
-  val domain: String = "daployboard:7070"
+  val domain: String = "deployboard:7070"
   val boardPagePath: String = "/board"
   val clientId: String = "d714c5d2ea309df367f9"
   val clientSecret: String = "7b47841de80e71cf782751248f821ab3ec389c4f"
@@ -25,10 +25,14 @@ class Top extends Controller {
             "code" -> code,
             "client_id" -> clientId,
             "client_secret" -> clientSecret,
-            "redirect_uri" -> ("http://deployboard:7070/top" + domain + boardPagePath))
+            "redirect_uri" -> ("http://" + domain + boardPagePath))
         )
-        render.static("board.html").toFuture
       case None => route.get("/top")
     }
   }
+
+  get("/github_login") { request =>
+    redirect("https://github.com/login/oauth/authorize?client_id=d714c5d2ea309df367f9&redirect_uri=http://deployboard:7070/board").toFuture
+  }
+
 }

@@ -220,5 +220,6 @@ object App extends FinatraServer {
   }
 
   register(new ExampleApp())
-  register(new Top())
+  register(new Login())
+  register(new Board())
 }
