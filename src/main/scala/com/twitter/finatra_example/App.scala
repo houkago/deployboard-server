@@ -218,8 +218,8 @@ object App extends FinatraServer {
     }
 
   }
-
-  register(new ExampleApp())
+  
   register(new Login())
+  register(new ExampleApp())
   register(new Board())
 }
