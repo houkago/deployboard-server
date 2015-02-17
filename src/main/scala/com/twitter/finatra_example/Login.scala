@@ -15,8 +15,7 @@ class Login extends Controller {
   get("/top") { request =>
     render.static("top.html").toFuture
   }
-  println(clientId)
-  println(clientSecret)
+  
   get("/") { request =>
     request.params.get("code") match {
       case Some(code) =>
