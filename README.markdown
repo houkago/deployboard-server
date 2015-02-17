@@ -1,3 +1,5 @@
+[![Circle CI](https://circleci.com/gh/houkago/deployboard-server.svg?style=svg)](https://circleci.com/gh/houkago/deployboard-server)
+
 # finatra_example
 
 Finatra requires either [maven](http://maven.apache.org/) or [sbt](http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html) to build and run your app.
