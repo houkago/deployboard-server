@@ -9,13 +9,14 @@ class Login extends Controller {
 
   val domain: String = "deployboard:7070"
   val boardPagePath: String = "/board"
-  val clientId: String = "d714c5d2ea309df367f9"
-  val clientSecret: String = "7b47841de80e71cf782751248f821ab3ec389c4f"
+  val clientId: String = ApplicationConfig.githubClientID()
+  val clientSecret: String = ApplicationConfig.githubClientSecret()
 
   get("/top") { request =>
     render.static("top.html").toFuture
   }
-
+  println(clientId)
+  println(clientSecret)
   get("/") { request =>
     request.params.get("code") match {
       case Some(code) =>
