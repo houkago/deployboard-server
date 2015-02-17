@@ -1,10 +1,7 @@
 package com.twitter.finatra_example
 
-import org.scalatest.FlatSpec
-import org.scalatest.matchers.ShouldMatchers
 import com.twitter.finatra.test._
 import com.twitter.finatra.FinatraServer
-import com.twitter.finatra_example._
 
 class AppSpec extends FlatSpecHelper {
 
@@ -29,12 +26,6 @@ class AppSpec extends FlatSpecHelper {
     get("/unauthorized")
     response.body   should equal ("Not Authorized!")
     response.code   should equal (401)
-  }
-
-  "GET /index.html" should "respond 200" in {
-    get("/")
-    response.body.contains("Finatra - The scala web framework") should equal(true)
-    response.code should equal(200)
   }
 
   "GET /user/foo" should "responsd with hello foo" in {
@@ -86,12 +77,6 @@ class AppSpec extends FlatSpecHelper {
   "GET /blog/index.rss" should "respond in a 415" in {
     get("/blog/index.rss")
     response.code should equal(415)
-  }
-
-  "GET /go_home" should "render same as /" in {
-    get("/go_home")
-    response.body.contains("Finatra - The scala web framework") should equal(true)
-    response.code should equal(200)
   }
 
   "GET /search_for_dogs" should "render same as /search?q=dogs" in {

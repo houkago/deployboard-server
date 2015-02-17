@@ -127,7 +127,7 @@ object App extends FinatraServer {
     error { request =>
       request.error match {
         case Some(e:ArithmeticException) =>
-          render.status(500).plain("whoops, divide ååby zero!").toFuture
+          render.status(500).plain("whoops, divide by zero!").toFuture
         case Some(e:Unauthorized) =>
           render.status(401).plain("Not Authorized!").toFuture
         case Some(e:UnsupportedMediaType) =>
