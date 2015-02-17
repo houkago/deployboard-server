@@ -1,3 +1,8 @@
 test:
   override:
     - "sbt test"
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: deployboard

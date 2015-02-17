@@ -5,7 +5,7 @@ import com.twitter.finatra.ContentType._
 
 object App extends FinatraServer {
 
-  
+
   class ExampleApp extends Controller {
 
     /**
@@ -13,9 +13,9 @@ object App extends FinatraServer {
      *
      * curl http://localhost:7070/ => "hello world"
      */
-    get("/") { request =>
-      render.static("index.html").toFuture
-    }
+//    get("/") { request =>
+//      render.static("index.html").toFuture
+//    }
 
     delete("/photos") { request =>
       render.plain("deleted!").toFuture
@@ -219,5 +219,7 @@ object App extends FinatraServer {
 
   }
 
+  register(new Login())
   register(new ExampleApp())
+  register(new Board())
 }
