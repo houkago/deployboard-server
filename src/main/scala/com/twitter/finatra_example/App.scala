@@ -219,6 +219,7 @@ object App extends FinatraServer {
 
   }
 
+  System.setProperty("com.twitter.finatra.config.port", ":80")
   register(new Login())
   register(new ExampleApp())
   register(new Board())
