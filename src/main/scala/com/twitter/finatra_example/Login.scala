@@ -32,7 +32,7 @@ class Login extends Controller {
   }
 
   get("/github_login") { request =>
-    redirect("https://github.com/login/oauth/authorize?client_id=d714c5d2ea309df367f9&redirect_uri=http://deployboard:7070/board").toFuture
+    redirect("https://github.com/login/oauth/authorize?client_id=d714c5d2ea309df367f9&redirect_uri=https://deployboard.herokuapp.com/board").toFuture
   }
 
 }
