@@ -25,14 +25,14 @@ class Login extends Controller {
             "code" -> code,
             "client_id" -> clientId,
             "client_secret" -> clientSecret,
-            "redirect_uri" -> ("https://" + domain + boardPagePath))
+            "redirect_uri" -> ("http://" + domain + boardPagePath))
         )
       case None => route.get("/top")
     }
   }
 
   get("/github_login") { request =>
-    redirect("https://github.com/login/oauth/authorize?client_id=d714c5d2ea309df367f9&redirect_uri=https://" + domain + boardPagePath).toFuture
+    redirect("https://github.com/login/oauth/authorize?client_id=d714c5d2ea309df367f9&redirect_uri=http://" + domain + boardPagePath).toFuture
   }
 
 }
