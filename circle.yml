@@ -6,19 +6,24 @@ machine:
   post:
     - gem install compass
 
+checkout:
+  post:
+    - git submodule sync
+    - git submodule update --init
+
 dependencies:
   pre:
     - npm install -g grunt-cli bower
     - npm install:
-      pwd: frontend
+        pwd: frontend
     - bower install:
-      pwd: frontend
+        pwd: frontend
 
 test:
   override:
     - "sbt test"
     - grunt test:
-      pwd: frontend
+        pwd: frontend
 
   post:
     - echo "TODO frontendをアーカイブする?"
