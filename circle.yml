@@ -1,6 +1,28 @@
+machine:
+  timezone: Asia/Tokyo
+  node:
+    version: 0.11.13
+
+  post:
+    - gem install compass
+
+dependencies:
+  pre:
+    - npm install -g grunt-cli bower
+    - npm install:
+      pwd: frontend
+    - bower install:
+      pwd: frontend
+
 test:
   override:
     - "sbt test"
+    - grunt test:
+      pwd: frontend
+
+  post:
+    - echo "TODO frontendをアーカイブする?"
+
 deployment:
   staging:
     branch: master
