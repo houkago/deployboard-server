@@ -8,7 +8,7 @@ import com.twitter.finatra.Controller
 class Login extends Controller {
 
   val domain: String = "deployboard.herokuapp.com"
-  val boardPagePath: String = "/board"
+  val boardPagePath: String = "/#/dashboard"
   val clientId: String = ApplicationConfig.githubClientID()
   val clientSecret: String = ApplicationConfig.githubClientSecret()
 
@@ -32,7 +32,14 @@ class Login extends Controller {
   }
 
   get("/github_login") { request =>
-    redirect("https://github.com/login/oauth/authorize?client_id=d714c5d2ea309df367f9&redirect_uri=http://" + domain + boardPagePath).toFuture
+    println("https://github.com/login/oauth/authorize?client_id="+clientId+"&redirect_uri=http://" + domain + boardPagePath)
+    redirect("https://github.com/login/oauth/authorize?client_id="+clientId+"&redirect_uri=http://" + domain + boardPagePath).toFuture
+  }
+
+  get("/api/top") { request =>
+    render.json(Map("oauth_url" ->
+      ("https://github.com/login/oauth/authorize?client_id=" + clientId + "&redirect_uri=http://" + domain + boardPagePath))
+    ).toFuture
   }
 
 }
