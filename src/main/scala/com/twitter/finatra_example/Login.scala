@@ -32,7 +32,6 @@ class Login extends Controller {
   }
 
   get("/github_login") { request =>
-    println("https://github.com/login/oauth/authorize?client_id="+clientId+"&redirect_uri=http://" + domain + boardPagePath)
     redirect("https://github.com/login/oauth/authorize?client_id="+clientId+"&redirect_uri=http://" + domain + boardPagePath).toFuture
   }
 
