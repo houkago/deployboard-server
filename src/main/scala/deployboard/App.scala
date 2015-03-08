@@ -1,10 +1,9 @@
-package com.twitter.finatra_example
+package deployboard
 
 import com.twitter.finatra._
-import com.twitter.finatra.ContentType._
-import deployboard.ServerModule
+import scaldi.Injectable
 
-object App extends FinatraServer {
+object App extends FinatraServer with Injectable {
 
 
 //  class ExampleApp extends Controller {
@@ -222,6 +221,5 @@ object App extends FinatraServer {
 
   implicit val module = new ServerModule
 
-  register(new Login())
-  register(new Board())
+  inject[Seq[Controller]].foreach(register(_))
 }

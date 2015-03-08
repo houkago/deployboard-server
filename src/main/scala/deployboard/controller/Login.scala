@@ -1,7 +1,7 @@
-package com.twitter.finatra_example
+package deployboard.controller
 
-import deployboard.config._
 import deployboard.DeployboardController
+import deployboard.config._
 import scaldi.Injector
 
 /**
