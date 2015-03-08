@@ -1,16 +1,17 @@
 package com.twitter.finatra_example
 
-import com.twitter.finatra.Controller
+import deployboard.config._
+import deployboard.DeployboardController
+import scaldi.Injector
 
 /**
  * Created by a13178 on 2/16/15.
  */
-class Login extends Controller {
+class Login(implicit val injector:Injector) extends DeployboardController {
 
-  val domain: String = "deployboard.herokuapp.com"
-  val boardPagePath: String = "/#/dashboard"
-  val clientId: String = ApplicationConfig.githubClientID()
-  val clientSecret: String = ApplicationConfig.githubClientSecret()
+  val domain: String = inject[String]('domain)
+  val boardPagePath: String = inject[String]('boardPagePath)
+  val githubConfig: GitHubAppConfig = inject[GitHubAppConfig]
 
   get("/top") { request =>
     render.static("top.html").toFuture
@@ -23,21 +24,22 @@ class Login extends Controller {
         route.post("https://github.com/login/oauth/access_token",
           Map(
             "code" -> code,
-            "client_id" -> clientId,
-            "client_secret" -> clientSecret,
-            "redirect_uri" -> ("http://" + domain + boardPagePath))
+            "client_id" -> githubConfig.clientId,
+            "client_secret" -> githubConfig.clientSecret,
+            "redirect_uri" -> s"http://${domain}${boardPagePath}"
+          )
         )
       case None => route.get("/top")
     }
   }
 
   get("/github_login") { request =>
-    redirect("https://github.com/login/oauth/authorize?client_id="+clientId+"&redirect_uri=http://" + domain + boardPagePath).toFuture
+    redirect(s"https://github.com/login/oauth/authorize?client_id=${githubConfig.clientId}&redirect_uri=http://${domain}${boardPagePath}").toFuture
   }
 
   get("/api/top") { request =>
     render.json(Map("oauth_url" ->
-      ("https://github.com/login/oauth/authorize?client_id=" + clientId + "&redirect_uri=http://" + domain + boardPagePath))
+      (s"https://github.com/login/oauth/authorize?client_id=${githubConfig.clientId}&redirect_uri=http://${domain}${boardPagePath}"))
     ).toFuture
   }
 
