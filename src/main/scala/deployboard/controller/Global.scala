@@ -27,6 +27,8 @@ class Global(implicit val injector: Injector) extends DeployboardController {
       case Some(e) =>
         e.printStackTrace
         render.status(500).json(Map("status" -> 500, "message" -> "Internal Server Error"))
+      case _ =>
+        render.status(500).json(Map("status" -> 500, "message" -> "Internal Server Error"))
     }
 
     errorResponse.toFuture

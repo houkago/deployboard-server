@@ -13,5 +13,6 @@ libraryDependencies ++= Seq(
   "org.scaldi" %% "scaldi" % "0.3.2"
 )
 
-resolvers +=
+resolvers ++= Seq(
   "Twitter" at "http://maven.twttr.com"
+)
