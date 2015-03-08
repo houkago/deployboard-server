@@ -27,8 +27,9 @@ class ServerModule extends Module {
 
   // controllers
   bind [Seq[Controller]] to Seq(
+    new Global,
     new Board,
-    new Controller
+    new Login
   )
 
 }
