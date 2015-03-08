@@ -21,18 +21,19 @@ object App extends FinatraServer with FinatraWebsocketServer with Injectable {
       startHttpServer()
     }
 
-    if (!finatraConfig.adminPort().isEmpty) {
-      startAdminServer()
-    }
-
-    if (!finatraConfig.sslPort().isEmpty) {
-      startSecureServer()
-    }
+//    if (!finatraConfig.adminPort().isEmpty) {
+//      startAdminServer()
+//    }
+//
+//    if (!finatraConfig.sslPort().isEmpty) {
+//      startSecureServer()
+//    }
 
     startWebsocketServer
 
     server       map { Await.ready(_) }
-    adminServer  map { Await.ready(_) }
-    secureServer map { Await.ready(_) }
+//    adminServer  map { Await.ready(_) }
+//    secureServer map { Await.ready(_) }
+    webSocketServer map { Await.ready(_) }
   }
 }
