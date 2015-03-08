@@ -1,6 +1,8 @@
 package deployboard
 
+import com.twitter.finatra.Controller
 import config._
+import controller._
 import scaldi.Module
 
 /**
@@ -22,5 +24,11 @@ class ServerModule extends Module {
     case None => throw new RuntimeException("""require 'GITHUB_CLIENT_ID' and 'GITHUB_CLIENT_SECRET'""")
     case Some(config) => config
   })
+
+  // controllers
+  bind [Seq[Controller]] to Seq(
+    new Board,
+    new Controller
+  )
 
 }
